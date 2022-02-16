@@ -25,7 +25,6 @@ export default class Validator {
     }
 
     static validate(route: string) {
-        console.log([Validator.routes[route] , Validator.validationResult]);
         return [Validator.routes[route] , Validator.validationResult];
     }
 
