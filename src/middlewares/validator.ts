@@ -6,8 +6,10 @@ import { param, body, validationResult } from "express-validator";
  */
 export default class Validator {
 
-    static get routes() : any {
+    static get routes(): any {
         return {
+
+
 
             /**
              * Register route
@@ -20,12 +22,27 @@ export default class Validator {
                 })
             ],
 
+            /**
+             * Login
+             */
+            login: [
+                body(
+                    'email',
+                    "invalid email address"
+                ).isEmail(),
+
+                body(
+                    'password',
+                    "'password' is required and must exceed 4 characters"
+                ).isLength({ min: 5 }),
+            ]
+
 
         }
     }
 
     static validate(route: string) {
-        return [Validator.routes[route] , Validator.validationResult];
+        return [Validator.routes[route], Validator.validationResult];
     }
 
     static userResource() {
